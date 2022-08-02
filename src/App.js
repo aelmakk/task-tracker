@@ -33,6 +33,13 @@ function App() {
     },
 ])
 
+  const addTask = (task) => {
+    // console.log('form submited', task);
+    const id = Math.floor(Math.random() * 1000 +1)
+    const newTask = {id, ...task}
+    setTasks([...tasks, newTask])
+  }
+
   const handlDelete = (id) => {
     setTasks(
       tasks.filter((task) => task.id !== id)
@@ -49,10 +56,12 @@ function App() {
 
   }
 
+  const [showAddTask, setShowAddTask] = useState(false)
+
   return (
     <div className="container">
-      <Header />
-      <AddTask />
+      <Header onAdd={() => setShowAddTask (!showAddTask)} showAddTask={showAddTask} />
+      {showAddTask && <AddTask onAdd={addTask} />}
       <h6>*double click on a task to set reminder</h6>
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={handlDelete} onToggle={toggleReminder} /> : 'No Tasks To Show' }
     </div>
