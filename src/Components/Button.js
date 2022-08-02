@@ -1,9 +1,14 @@
-import React from "react";
 import "../index.css"
 
-const Button = (props) => {
+const Button = ({ text, onClick }) => {
+
     return (
-        <button className="btn">{ props.text }</button>
+        <button
+            onClick={ onClick }
+            className='btn'
+        >
+            { text }
+        </button>
     );
 }
 
