@@ -28,10 +28,29 @@ function App() {
     },
 ])
 
+  const handlDelete = (id) => {
+    setTasks(
+      tasks.filter((task) => task.id !== id)
+    )
+    // console.log('delete', id)
+  }
+  
+  const toggleReminder = (id) => {
+    setTasks(
+      tasks.map((task) => 
+      task.id === id ? { ...task, reminder:!task.reminder} : task
+      // (
+        // task.id === id ? task.reminder = !task.reminder : task.reminder
+      // )
+    ))
+    // console.log('toggle Reminder', id)
+
+  }
+
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks} />
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={handlDelete} onToggle={toggleReminder} /> : 'No Tasks To Show' }
     </div>
   );
 }
