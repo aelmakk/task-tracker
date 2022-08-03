@@ -62,7 +62,7 @@ function App() {
     <div className="container">
       <Header onAdd={() => setShowAddTask (!showAddTask)} showAddTask={showAddTask} />
       {showAddTask && <AddTask onAdd={addTask} />}
-      <h6>*double click on a task to set reminder</h6>
+      <h6 style={{color: 'red'}}>*double click on a task to set/unset reminder</h6>
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={handlDelete} onToggle={toggleReminder} /> : 'No Tasks To Show' }
     </div>
   );
